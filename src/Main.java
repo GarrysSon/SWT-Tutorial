@@ -1,10 +1,14 @@
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 
 public class Main
 {
@@ -21,11 +25,11 @@ public class Main
 		shell.open();
 		
 		// Push button.
-		Button button = new Button(shell, SWT.PUSH);
-		button.setText("Exit");
+		Button pushButton = new Button(shell, SWT.PUSH);
+		pushButton.setText("Exit");
 		
 		// Assigning close operation to the button.
-		button.addSelectionListener(new SelectionAdapter()
+		pushButton.addSelectionListener(new SelectionAdapter()
 		{
 			@Override
 			public void widgetSelected(SelectionEvent e)
@@ -33,6 +37,22 @@ public class Main
 				shell.dispose();
 			}
 		});
+		
+		// SWT equivalent of a panel.
+		Composite composite = new Composite(shell, SWT.NONE);
+		composite.setLayout(new FillLayout());
+		
+		// Toggle button.
+		Button toggleButton = new Button(composite, SWT.TOGGLE);
+		toggleButton.setText("Happy");
+		
+		// Text field.
+		Text text = new Text(composite, SWT.BORDER);
+		text.setText("Type in me!");
+		
+		// Label field.
+		Label label = new Label(composite, SWT.NONE);
+		label.setText("This is a label!");
 		
 		// While the shell is open.
 		while(!shell.isDisposed())
